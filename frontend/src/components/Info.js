@@ -4,6 +4,9 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { useCookies } from "react-cookie";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../features/auth/authAction";
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -18,24 +21,25 @@ const VisuallyHiddenInput = styled("input")({
 });
 
 const Info = () => {
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const dispatch = useDispatch();
+  // console.log(cookies.UserId);
   const [formData, setFormData] = useState({
-    user_id: "",
+    user_id: cookies.UserId,
     name: "",
     age: "",
-    // dob_month: "",
-    // dob_day: "",
-    // dob_year: "",
-    gender_identity: "man",
-    sport_interest: "cycling",
-    email: "",
+    gender_identity: "",
+    sport_interest: "",
     url: "",
     about: "",
     matches: [],
     img: null,
   });
+  // console.log(formData.user_id);
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("Submitted");
+    dispatch(updateUser({ formData }));
   };
 
   //Handle Change

@@ -46,3 +46,22 @@ export const signInUser = createAsyncThunk(
     }
   }
 );
+
+//Update user API:
+export const updateUser = createAsyncThunk(
+  "auth/updateUser",
+  async ({ formData }, { rejectWithValue }) => {
+    try {
+      const response = await axios.put("http://localhost:3001/users", {
+        formData,
+      });
+      return response.data.updatedUser;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);

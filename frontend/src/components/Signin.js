@@ -24,6 +24,7 @@ const Signin = () => {
       const action = await dispatch(signInUser({ email, password: pass }));
       // console.log(action.payload);
       setCookie("Token", action.payload.token);
+      setCookie("UserId", action.payload.userId);
 
       // Check if the action contains an error
       if (action.error) {
