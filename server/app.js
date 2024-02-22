@@ -10,6 +10,7 @@ app.use(express.json());
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
+  storageBucket: "gs://fit-go-8b2d7.appspot.com",
 });
 
 //getting the signup and saving it to signUpRouter

@@ -1,8 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-//AsyncThunk basically calls the API from backend
-
 //SignUp API call:
 export const registerUser = createAsyncThunk(
   "auth/register",

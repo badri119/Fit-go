@@ -7,7 +7,7 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { useCookies } from "react-cookie";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../features/auth/authAction";
-
+import { db, storage } from "../firebase";
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
   clipPath: "inset(50%)",
@@ -30,30 +30,57 @@ const Info = () => {
     age: "",
     gender_identity: "",
     sport_interest: "",
-    url: "",
     about: "",
     matches: [],
     img: null,
   });
   // console.log(formData.user_id);
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("Submitted");
-    dispatch(updateUser({ formData }));
+  const handleSubmit = async (event) => {
+    try {
+      event.preventDefault();
+
+      const { img, user_id } = formData;
+      if (!img) {
+        console.error("No image selected.");
+        return;
+      }
+
+      const photo_id = user_id; // or cookies.UserId
+      const uploadTask = storage.ref(`profilePic/${photo_id}`).put(img);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          // progress handling if needed
+        },
+        (error) => {
+          console.error("Error uploading image:", error);
+        },
+        async () => {
+          const url = await uploadTask.snapshot.ref.getDownloadURL();
+
+          await db.collection("users").doc(user_id).update({
+            img: url,
+          });
+
+          console.log("Image uploaded and URL stored:", url);
+
+          dispatch(updateUser({ formData }));
+        }
+      );
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
-  //Handle Change
   const handleChange = (event) => {
     const { name, value, files } = event.target;
-    // console.log(value, name);
 
     if (name === "img") {
       setFormData({
         ...formData,
-        [name]: files[0], // Store the File object directly in formData
-        url: URL.createObjectURL(files[0]), // Set url for displaying preview
+        [name]: files[0],
+        url: URL.createObjectURL(files[0]),
       });
-      console.log(files);
     } else {
       setFormData({
         ...formData,
@@ -61,7 +88,6 @@ const Info = () => {
       });
     }
   };
-  // console.log(formData);
 
   return (
     <div className="details pt-4">
