@@ -51,6 +51,7 @@ router.put("/", async (req, res) => {
 
     //Get the userDoc
     const userDoc = user.docs[0];
+    // console.log(userDoc);
 
     //update the specific userDoc
     await userDoc.ref.update({
@@ -60,6 +61,7 @@ router.put("/", async (req, res) => {
       interest: formData.sport_interest,
       about: formData.about,
       matches: formData.matches,
+      img: formData.img,
       firstTimeUser: false,
     });
 

@@ -7,7 +7,23 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { useCookies } from "react-cookie";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../features/auth/authAction";
-import { db, storage } from "../firebase";
+import { storage } from "../firebase";
+import { useNavigate } from "react-router-dom";
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+
+//Custom Style
+const BootstrapTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} arrow classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.arrow}`]: {
+    color: theme.palette.common.black,
+  },
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: theme.palette.common.black,
+  },
+}));
+
+//Custom Style
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
   clipPath: "inset(50%)",
@@ -21,7 +37,8 @@ const VisuallyHiddenInput = styled("input")({
 });
 
 const Info = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const navigate = useNavigate();
+  const [cookies] = useCookies(["user"]);
   const dispatch = useDispatch();
   // console.log(cookies.UserId);
   const [formData, setFormData] = useState({
@@ -36,9 +53,8 @@ const Info = () => {
   });
   // console.log(formData.user_id);
   const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
-      event.preventDefault();
-
       const { img, user_id } = formData;
       if (!img) {
         console.error("No image selected.");
@@ -46,30 +62,37 @@ const Info = () => {
       }
 
       const photo_id = user_id; // or cookies.UserId
-      const uploadTask = storage.ref(`profilePic/${photo_id}`).put(img);
+      const uploadTask = storage.ref(`ProfilePic/${photo_id}`).put(img);
       uploadTask.on(
         "state_changed",
-        (snapshot) => {
-          // progress handling if needed
-        },
+        null,
         (error) => {
-          console.error("Error uploading image:", error);
+          // progress handling if needed
+          console.log("Error", error);
         },
+
         async () => {
-          const url = await uploadTask.snapshot.ref.getDownloadURL();
+          try {
+            const url = await storage
+              .ref("ProfilePic")
+              .child(photo_id)
+              .getDownloadURL();
+            // console.log("Image uploaded and URL stored:", url);
 
-          await db.collection("users").doc(user_id).update({
-            img: url,
-          });
+            //update formData.img with the url that was made
+            formData.img = url;
+            // console.log(formData.img);
 
-          console.log("Image uploaded and URL stored:", url);
-
-          dispatch(updateUser({ formData }));
+            dispatch(updateUser({ formData }));
+          } catch (error) {
+            console.error("Error retrieving image URL:", error);
+          }
         }
       );
     } catch (error) {
       console.error("Error:", error);
     }
+    navigate("/home");
   };
 
   const handleChange = (event) => {
@@ -276,11 +299,16 @@ const Info = () => {
           </div>
           <div className="flex justify-center">
             {formData.url && (
-              <img
-                src={formData.url}
-                alt="Profile Pic"
-                className="rounded-md h-96 w-auto mt-5"
-              ></img>
+              <BootstrapTooltip
+                title="Your Profile Picture Preview"
+                placement="bottom"
+              >
+                <img
+                  src={formData.url}
+                  alt="Profile Pic"
+                  className="rounded-full h-48 w-48 mt-5"
+                ></img>
+              </BootstrapTooltip>
             )}
           </div>
         </section>
