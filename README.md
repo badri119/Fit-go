@@ -1,4 +1,6 @@
-# Fit.go: A web application for exercise enthusiasts to find compatible workout partners, intensifying and enhancing their fitness routines for more enjoyment and effectiveness.
+# Fit.go:
+
+A web application for exercise enthusiasts to find compatible workout partners, intensifying and enhancing their fitness routines for more enjoyment and effectiveness.
 
 # Motive:
 
@@ -7,6 +9,8 @@ As someone who loves cycling, I've always had this thought behind my head for pe
 # Demo (Coming soon):
 
 <a href="" target="_blank">Fit.go Tutorial </a>
+
+# Screenshot:
 
 ![Home Page](<Screenshot 2024-02-23 at 18.02.02.png>)
 
