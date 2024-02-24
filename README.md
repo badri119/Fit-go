@@ -4,7 +4,7 @@ A web application for exercise enthusiasts to find compatible workout partners, 
 
 # Motive:
 
-As someone who loves cycling, I've always had this thought behind my head for people who wanted to workout but don't like doing it alone. This web application, is losely based on tinder where you match with your workout partner instead of your potential life partner (😆).
+As a cycling enthusiast, I've often considered how some people who want to exercise may not enjoy doing it alone. This web application is losely based on tinder where you match with your workout partner instead of your potential life partner (😆).
 
 # Demo (Coming soon):
 
