@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
     // Check if user exists with the given email
     const existingEmail = await db
       .collection("users")
-      .where("email", "==", lowercaseEmail)
+      .where("Email", "==", lowercaseEmail)
       .limit(1)
       .get();
 
@@ -31,16 +31,13 @@ router.post("/", async (req, res) => {
     const userData = existingEmail.docs[0].data();
 
     // Verify password
-    const passwordMatch = await bcrypt.compare(
-      password,
-      userData.hashedPassword
-    );
+    const passwordMatch = await bcrypt.compare(password, userData.Password);
     if (!passwordMatch) {
       return res.status(401).json({ message: "Password is incorrect" });
     }
 
     //Checking if the user is signing in for the first time
-    const firstTimeUser = userData.firstTimeUser;
+    const firstTimeUser = userData.FirstTimeUser;
 
     //Getting the ID from the database
     const userId = userData.id;
@@ -49,9 +46,9 @@ router.post("/", async (req, res) => {
 
     res.status(200).json({
       message: "Sign in successful",
-      token: token,
-      userId: userId,
-      firstTimeUser: firstTimeUser,
+      Token: token,
+      UserId: userId,
+      FirstTimeUser: firstTimeUser,
     });
   } catch (error) {
     console.error("Error signing in:", error);

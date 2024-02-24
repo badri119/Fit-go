@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const ChatInput = () => {
-  const [textarea, setTextArea] = useState(null);
+  const [textarea, setTextArea] = useState("");
   return (
     <div className="px-5 flex flex-col ">
       <textarea

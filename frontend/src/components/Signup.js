@@ -32,7 +32,6 @@ const Signup = () => {
         // console.log(action.payload);
       } else {
         // console.log(action.payload);
-
         navigate("/");
       }
     } catch (err) {

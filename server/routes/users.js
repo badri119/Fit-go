@@ -23,14 +23,21 @@ router.get("/", async (req, res) => {
   }
 });
 
-//Update specific user
+//Update specific user with details entered on /details page
 router.put("/", async (req, res) => {
   try {
     //request to get formData
     const formData = req.body.formData;
 
-    //getting the user_id from the form data
-    const userIdcompare = formData.user_id;
+    //getting the user_id from the form data (destrcuturing)
+    const { name, user_id } = formData;
+
+    //store the user_id to userIdcompare
+    const userIdcompare = user_id;
+
+    //Capitalizing first letter of the name
+    const capitalizeName = name[0].toUpperCase() + name.slice(1);
+
     // console.log(
     //   "Directly from DB and through variable",
     //   formData.user_id,
@@ -55,14 +62,14 @@ router.put("/", async (req, res) => {
 
     //update the specific userDoc
     await userDoc.ref.update({
-      name: formData.name,
-      age: formData.age,
-      gender: formData.gender_identity,
-      interest: formData.sport_interest,
-      about: formData.about,
-      matches: formData.matches,
-      img: formData.img,
-      firstTimeUser: false,
+      Name: capitalizeName,
+      Age: formData.age,
+      Gender: formData.gender_identity,
+      Interest: formData.sport_interest,
+      About: formData.about,
+      Matches: formData.matches,
+      Img: formData.img,
+      FirstTimeUser: false,
     });
 
     //fetching updated data:

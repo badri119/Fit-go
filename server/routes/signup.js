@@ -38,10 +38,10 @@ router.post("/", async (req, res) => {
 
     // Save user data to Firestore
     const userRef = await db.collection("users").add({
-      email: lowercaseEmail,
-      hashedPassword,
-      timestamp,
-      firstTimeUser: true,
+      Email: lowercaseEmail,
+      Password: hashedPassword,
+      Timestamp: timestamp,
+      FirstTimeUser: true,
     });
 
     //Getting the ID from firestore DB, as firebase creates a unique ID and pushing it inside the user ID data

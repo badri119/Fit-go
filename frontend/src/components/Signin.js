@@ -23,8 +23,8 @@ const Signin = () => {
       // Dispatch registerUser action
       const action = await dispatch(signInUser({ email, password: pass }));
       // console.log(action.payload);
-      setCookie("Token", action.payload.token);
-      setCookie("UserId", action.payload.userId);
+      setCookie("Token", action.payload.Token);
+      setCookie("UserId", action.payload.UserId);
 
       // Check if the action contains an error
       if (action.error) {
@@ -32,7 +32,7 @@ const Signin = () => {
       } else {
         // If registration is successful, navigate to details page and setcookie:
         // console.log(action.payload.token);
-        const firstTimeUser = action.payload.firstTimeUser;
+        const firstTimeUser = action.payload.FirstTimeUser;
         if (firstTimeUser === true) {
           navigate("/details");
         } else {
