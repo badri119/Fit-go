@@ -24,7 +24,7 @@ As a cycling enthusiast, I've often considered how some people who want to exerc
 
 # Key Features:
 
-- Signin and Signup
+- Implemented Signin and Signup functionality through firestore DB instead of using Google's Authentication
 - Credientials are encrypted on a database level
 - Users have the option to choose the activity they are interested in
 - If there's a match, the user can chat and exchange messages with their workout partner
@@ -66,6 +66,6 @@ As a cycling enthusiast, I've often considered how some people who want to exerc
    - After saving, in your app.js, import the serviceAccountKey file and save it to a variable
    - Initialize the serviceAccountKey.
      - Example: admin.initializeApp({
-       credential: admin.credential.cert("variable you saved it to"),
+       credential: admin.credential.cert("variable you saved it to")
        });
 3. Run npm start for the server to boot up
