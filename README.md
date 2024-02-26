@@ -8,8 +8,6 @@ As a cycling enthusiast, I've often considered how some people who want to exerc
 
 # Demo (Coming soon):
 
-<a href="" target="_blank">Fit.go Tutorial </a>
-
 # Screenshot:
 
 ![Home Page](<Screenshot 2024-02-23 at 18.02.02.png>)
@@ -45,7 +43,7 @@ As a cycling enthusiast, I've often considered how some people who want to exerc
 
 # How to start the project:
 
-1. Clone the projects and open it using Visual studio code
+1. Clone the project and open it using Visual studio code or any desired IDE.
 2. A firebase configuration will be required, please head to https://firebase.google.com/ and create a project
 3. After creating a project, initialize hosting
 4. Create a Firestore Database and Storage
@@ -61,7 +59,7 @@ As a cycling enthusiast, I've often considered how some people who want to exerc
 
 1. cd to backend and install the required dependencies using npm install
 2. Firebase Admin Setup:
-   - Initialize a Service Account via firebase and generate a serviceAccountKey
+   - Initialize a Service Account via firebase (Project Overview > Project Settings > Service Accounts) and generate a serviceAccountKey using node.js
    - save the serviceAccountKey to a json file
    - After saving, in your app.js, import the serviceAccountKey file and save it to a variable
    - Initialize the serviceAccountKey.
