@@ -24,7 +24,7 @@ As a cycling enthusiast, I've often considered how some people who want to exerc
 
 - Implemented Signin and Signup functionality through firestore DB instead of using Google's Authentication
 - Credientials are encrypted on a database level
-- Users have the option to choose the activity they are interested in
+- Users have the option to choose an activity they are interested in
 - If there's a match, the user can chat and exchange messages with their workout partner
 
 # Future Improvements:
