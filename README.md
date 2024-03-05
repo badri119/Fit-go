@@ -8,7 +8,7 @@ As a cycling enthusiast, I've often considered how some people who want to exerc
 
 ## My Longest ride yet:
 
-### Vancouver to Mt. Baker (Washington) and back in 11 hours
+### Vancouver to Mt. Baker (Washington) and back
 
 ![](Ride.jpeg)
 
