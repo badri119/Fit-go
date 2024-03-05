@@ -18,18 +18,26 @@ const Home = () => {
     {
       name: "Richard Hendricks",
       url: "https://i.imgur.com/oPj4A8u.jpg",
+      sport: "Gym",
+      bio: "Hey, we can hit our target!",
     },
     {
       name: "Erlich Bachman",
       url: "https://i.imgur.com/oPj4A8u.jpg",
+      sport: "Cycling",
+      bio: "Hey, we can hit our target!",
     },
     {
       name: "Monica Hall",
       url: "https://i.imgur.com/oPj4A8u.jpg",
+      sport: "Running",
+      bio: "Hey, we can hit our target!",
     },
     {
       name: "Jared Dunn",
       url: "https://i.imgur.com/oPj4A8u.jpg",
+      sport: "Cycling",
+      bio: "Hey, we can hit our target!",
     },
   ];
 
@@ -77,6 +85,12 @@ const Home = () => {
                       <h3 className="font-bold text-black text-center m-0">
                         {character.name}
                       </h3>
+                      <p className="font-bold text-black text-center m-0 pt-5">
+                        {character.sport}
+                      </p>
+                      <p className="font-bold text-black text-center m-0 pt-5">
+                        {character.bio}
+                      </p>
                     </div>
                   </div>
                 </div>

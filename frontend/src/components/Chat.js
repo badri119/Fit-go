@@ -14,6 +14,15 @@ const Chat = () => {
         <button className="border-b-4 border-sky-600 text-md m-0.5 p-2.5 disabled:border-b-4 disabled:border-slate-600">
           Chat
         </button>
+        <button className="border-b-4 border-sky-600 text-md m-0.5 p-2.5 disabled:border-b-4 disabled:border-slate-600">
+          <a
+            href="https://snapchat-clone-934c7.web.app/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Snap a Friend
+          </a>
+        </button>
       </div>
       <Matches />
       <ChatDisplay />

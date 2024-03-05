@@ -6,6 +6,12 @@ A web application for exercise enthusiasts to find compatible workout partners, 
 
 As a cycling enthusiast, I've often considered how some people who want to exercise may not enjoy doing it alone. This web application is losely based on tinder where you match with your workout partner instead of your potential life partner (😆).
 
+## My Longest ride yet:
+
+### Vancouver to Mt. Baker (Washington) and back in 11 hours
+
+![](Ride.jpeg)
+
 # Demo (Coming soon):
 
 # Screenshot:
